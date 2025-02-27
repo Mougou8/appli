@@ -75,3 +75,14 @@ session_start();
 
       <!-- $_POST = liée à la méthode HTTP POST, contient toutes les données transmises au serveur
         par l'intermediaire de l'URL d'un formulaire -->
+
+        <!-- Un tableau associé est un tableau qui va utiliser des clés textuelles 
+         qu'on va associer à chaque valeur. -->
+
+         <!-- Faille XSS(cross Site Scripting)est une faille qui permet d'injecter 
+          du code HTML et/ou Javscript dans des variables ou des bases de données mal protégées -->
+
+          <!--Protection de la Faille XSS = filtrer et valider les entrées utilisateur 
+          (filter_input sur le $name) 
+              utiliser des en-têtes HTTp appropriés avec "header"
+              protéger les zones sensibles -->

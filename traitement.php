@@ -33,18 +33,13 @@
 //contiennent respectivement les valeurs nettoyées et/ou validées du formulaire
 if($name && $price && $qtt){
 // ajout tableau product = clé 
-     $product1 = [
-        "name" => "Banane",
-        "price" => 1.25,
-        "qtt" => 3,
+     $product = [
+        "name" => $name,
+        "price" => $price,
+        "qtt" => $qtt,
         "total" => $price*$qtt
      ];
-     $product2 = [
-      "name" => "Pomme",
-      "price" => 2.5,
-      "qtt" => 10,
-      "total" => $price*$qtt
-   ];
+     
    
    
 // PHP crée automatiquement une session pour associer le tableau "products" à cette clé
