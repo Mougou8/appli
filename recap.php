@@ -16,7 +16,7 @@ session_start();
         <title>Recapitulatif des produits</title>
     </head>
     <body>
-       <?php 
+       <?php var_dump($_SESSION).?>
        // Ajout d'une condition qui vérifie: soit la clé "products" du tableau de session n'existe pas:!isset(),
        // soit cette clé existe mais ne contient aucune donnée: empty()
             if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
@@ -62,3 +62,16 @@ session_start();
        ?> 
     </body>
     </html>
+    <!-- Une session contient les données stockées dans la session utilisateur côté serveur. -->
+    <!-- Une session en PHP correspond à une façon de stocker des données différentes pour 
+     chaque utilisateur en utilisant un identifiant de session unique. -->
+    <!-- Un des grands intérêts des sessions est qu'on va pouvoir conserver des informations pour
+      un utilisateur lorsqu'il navigue d'une page à une autre.  -->
+
+    <!-- Superglobales = PHP dispose de plusieurs variables dites "Superglobales" pour accéder à 
+     toutes les informations pouvant être transmises par le client au serveur. -->
+    <!-- Toute les superglobales sont du type tableau, proposant ainsi une manière simple d'y 
+     regrouper plusieurs informations sous forme de paires "clé / valeur". -->
+
+      <!-- $_POST = liée à la méthode HTTP POST, contient toutes les données transmises au serveur
+        par l'intermediaire de l'URL d'un formulaire -->

@@ -9,8 +9,9 @@
 <body>
 
     <h1>Ajouter un produit</h1>
-    <!--action=fichier à atteindre lorsque l'user soumettra le formulaire
-        méthod=par quelle méthode HTTP données de formulaireseront transmises au serveur--> 
+    <!-- balise <form> comporte deux attributs: -->
+    <!--action=le fichier à atteindre lorsque l'user soumettra le formulaire.
+        méthod= précise par quelle méthode HTTP données de formulaire seront transmises au serveur--> 
     <form action="traitement.php" method="post">
         <p>
             <label>
