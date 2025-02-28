@@ -22,14 +22,42 @@
   */
   // Vérification de l'existence de la clé "submit" dans le tableau $_POST, cette clé correspond
   // à l'attribut "name" du bouton <input type="submit" name="submit"> du formulaire.
-  // $_POST = 
+  // isset() renverra false lors de la vérification d'une variable de valeur nulle. 
    if(isset($_POST['submit'])){
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
     $price = filter_input(INPUT_POST, "price" , FILTER_VALIDATE_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
     $qtt = filter_input(INPUT_POST, "qtt" ,FILTER_VALIDATE_INT); 
 /*à la suite de ça , on doit veirfier si les filtres ont functionné*/  
-   
+   }  
 
+  //  if(isset($_GET['action'])) {
+
+  //   switch($_GET['action']){
+  //     case "add":
+  //        (isset($_GET['article'])){
+  //         ajouterAuPanier($_GET['article']);
+  //         echo "ajouter article au panier.";
+  //     } else {
+  //       echo "aucun article spécifié.";
+  //     }
+  //       break;
+  //     case "delete":
+  //       viderPanier();
+  //       echo " panier vidé.";
+  //       break;
+  //     }
+  //  }
+
+  $action = isset($_GET['action']) ? $_GET['action'] : '';
+
+switch ($action) {
+    case 'add':
+        // Ajouter un produit au panier
+        $products = $_GET['products'];
+        $_SESSION['panier'][] = $products;
+        break;
+    case '
+   
 //contiennent respectivement les valeurs nettoyées et/ou validées du formulaire
 if($name && $price && $qtt){
 // ajout tableau product = clé 
@@ -49,6 +77,13 @@ if($name && $price && $qtt){
      }
 
      $_SESSION['products'][] = $product; 
+
+    // Traitement de votre formulaire
+// Exemple : ajout d'un produit en session
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // $produit = $_POST['produit'];
+    // $_SESSION['produits'][] = $produit;
+     $_SESSION['message'] = "Produit ajouté avec succès !";
      }
    }
   

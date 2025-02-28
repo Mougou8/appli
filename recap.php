@@ -3,6 +3,9 @@
 session_start() pour recuperer la session de l'utilisateur */
 
 session_start();
+$nombreProduits = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
+// $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+// unset($_SESSION['message']);
     ?>
    
 <!-- Permet d'afficher de manière organisée et exhaustive la liste des produits 
@@ -13,10 +16,18 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Recapitulatif des produits</title>
+        <!-- <title>Recapitulatif des produits</title> -->
+        <link rel="stylesheet" href="style.css
     </head>
     <body>
-       <?php var_dump($_SESSION).?>
+      <div class="navbar">
+        <a href="index.php">Home</a>
+        <a href="recap.php">Recap</a>
+        <a href="#">Produits en session: <?php echo $nombreProduits; ?></a>
+        <!-- <span style="float:right; padding: 14px 16px;">Produits en session: <?php echo $nbProduits; ?></span> -->
+    </div>
+       <?php 
+      
        // Ajout d'une condition qui vérifie: soit la clé "products" du tableau de session n'existe pas:!isset(),
        // soit cette clé existe mais ne contient aucune donnée: empty()
             if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
@@ -24,7 +35,7 @@ session_start();
        }
        else {
         echo "<table>",// affichage des produits dans le tableau HTML<table> à 
-                       //  une liste de données ordonné eet bien décomposée
+                       //  une liste de données ordonné est bien décomposée
                "<thead>",
                  "<tr>",
                     "<th>#</th>",
@@ -46,6 +57,8 @@ session_start();
          // Cette variable contiendra le produit, sous forme de tableau,tel que l'a créé
          // et stocké en sesssion le fichier traitement.php.        
                   "<td>".$product['name']."</td>",
+                  // La fonction number_format est souvent utilisée pour afficher des prix, des statistiques 
+                  // ou tout autre type de données numériques de manière plus lisible pour les utilisateurs.
                   "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
                   "<td>".$product['qtt']."</td>",
                   "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
@@ -53,6 +66,8 @@ session_start();
          $totalGeneral += $product['total']; 
         }
         echo "<tr>",
+        // L'attribut colspan est utilisé dans les balises <td> ou <th> pour indiquer combien de colonnes 
+        // une cellule doit occuper dans un tableau HTML. Cela permet de fusionner plusieurs colonnes en une seule cellule.
                 "<td colspan=4>Total général : </td>",
                 "<td><strong>".number_format($totalGeneral,2,",", "&nbsp;")."&nbsp;€</strong></td>",
             "</tr>",
@@ -82,7 +97,7 @@ session_start();
          <!-- Faille XSS(cross Site Scripting)est une faille qui permet d'injecter 
           du code HTML et/ou Javscript dans des variables ou des bases de données mal protégées -->
 
-          <!--Protection de la Faille XSS = filtrer et valider les entrées utilisateur 
-          (filter_input sur le $name) 
-              utiliser des en-têtes HTTp appropriés avec "header"
-              protéger les zones sensibles -->
+          <!--Protection de la Faille XSS = plusieurs moyens et des étapes à suivre:
+            filtrer et valider les entrées utilisateur (filter_input sur le $name en faisant la soumission) 
+            utiliser des en-têtes HTTp appropriés avec "header"
+            protéger les zones sensibles -->
