@@ -4,6 +4,7 @@
 // La 2ème fonctionnalité: au démarrage d'une session , le serveur enregistrera un cookie PHPSESSID
 //dans le navitagateur client,contenant l'identifiant de la session appartenant à celui-ci.  
   session_start();
+  $message = '';
 
  
 /*les formulaires sont utilisés par les utilisateurs pour
@@ -30,33 +31,40 @@
 /*à la suite de ça , on doit veirfier si les filtres ont functionné*/  
    }  
 
-  //  if(isset($_GET['action'])) {
+   if(isset($_GET['action'])) {
 
-  //   switch($_GET['action']){
-  //     case "add":
+    switch($_GET['action']){
+      case "add":
   //        (isset($_GET['article'])){
   //         ajouterAuPanier($_GET['article']);
-  //         echo "ajouter article au panier.";
-  //     } else {
-  //       echo "aucun article spécifié.";
-  //     }
-  //       break;
-  //     case "delete":
-  //       viderPanier();
-  //       echo " panier vidé.";
-  //       break;
-  //     }
-  //  }
+          echo "ajouter article au panier.";
+          break;
+        case "delete":
+          echo " produit supprimé.";
+          break;
+        case "clear":
+          // viderPanier();
+          echo " panier vidé.";
+          break;
+        case "up-qtt":
+            echo " quantité augmentée.";
+            break;
+        case "down-qtt":
+            echo " quantité diminuée.";
+              break;
+      }
 
-  $action = isset($_GET['action']) ? $_GET['action'] : '';
+   }
 
-switch ($action) {
-    case 'add':
-        // Ajouter un produit au panier
-        $products = $_GET['products'];
-        $_SESSION['panier'][] = $products;
-        break;
-    case '
+//   $action = isset($_GET['action']) ? $_GET['action'] : '';
+
+// switch ($action) {
+//     case 'add':
+//         // Ajouter un produit au panier
+//         $products = $_GET['products'];
+//         $_SESSION['panier'][] = $products;
+//         break;
+//     case '
    
 //contiennent respectivement les valeurs nettoyées et/ou validées du formulaire
 if($name && $price && $qtt){

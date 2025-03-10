@@ -4,8 +4,8 @@ session_start() pour recuperer la session de l'utilisateur */
 
 session_start();
 $nombreProduits = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
-// $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
-// unset($_SESSION['message']);
+$message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+unset($_SESSION['message']);
     ?>
    
 <!-- Permet d'afficher de manière organisée et exhaustive la liste des produits 
@@ -16,15 +16,15 @@ $nombreProduits = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <title>Recapitulatif des produits</title> -->
-        <link rel="stylesheet" href="style.css
+        <title>Recapitulatif des produits</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
       <div class="navbar">
         <a href="index.php">Home</a>
         <a href="recap.php">Recap</a>
         <a href="#">Produits en session: <?php echo $nombreProduits; ?></a>
-        <!-- <span style="float:right; padding: 14px 16px;">Produits en session: <?php echo $nbProduits; ?></span> -->
+        <span style="float:right; padding: 14px 16px;">Produits en session: <?php echo $nbProduits; ?></span>
     </div>
        <?php 
       

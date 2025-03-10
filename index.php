@@ -5,7 +5,7 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 unset($_SESSION['message']);
 ?>
 
-<!-- !DOCTYPE html> -->
+!DOCTYPE html>
 <html lang= "fr">
     <head>
         <meta charset = "UTF-8">
@@ -16,8 +16,8 @@ unset($_SESSION['message']);
 <body>
 <div class="container">
         <h1>Bienvenue sur la page d'accueil</h1>
-        <!-- <p>Ceci est un exemple de page d'accueil.</p> -->
-        <!-- <a href="recap.php" class="button">Voir le récapitulatif</a> -->
+        <p>Ceci est un exemple de page d'accueil.</p>
+        <a href="recap.php" class="button">Voir le récapitulatif</a>
         <!--  <div class="container">
         <?php if ($message): ?>
             <p><?php echo $message; ?></p>
