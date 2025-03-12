@@ -24,34 +24,75 @@
   // Vérification de l'existence de la clé "submit" dans le tableau $_POST, cette clé correspond
   // à l'attribut "name" du bouton <input type="submit" name="submit"> du formulaire.
   // isset() renverra false lors de la vérification d'une variable de valeur nulle. 
-   if(isset($_POST['submit'])){
-    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-    $price = filter_input(INPUT_POST, "price" , FILTER_VALIDATE_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-    $qtt = filter_input(INPUT_POST, "qtt" ,FILTER_VALIDATE_INT); 
-/*à la suite de ça , on doit veirfier si les filtres ont functionné*/  
-   }  
-
+ 
    if(isset($_GET['action'])) {
 
     switch($_GET['action']){
       case "add":
-  //        (isset($_GET['article'])){
-  //         ajouterAuPanier($_GET['article']);
+
+        if(isset($_POST['submit'])){
+          $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+          $price = filter_input(INPUT_POST, "price" , FILTER_VALIDATE_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+          $qtt = filter_input(INPUT_POST, "qtt" ,FILTER_VALIDATE_INT); 
+      /*à la suite de ça , on doit veirfier si les filtres ont functionné*/  
+
+      if($name && $price && $qtt){
+        // ajout tableau product = clé 
+             $product = [
+                "name" => $name,
+                "price" => $price,
+                "qtt" => $qtt,
+                "total" => $price*$qtt
+             ];
+             
+           
+           
+        // PHP crée automatiquement une session pour associer le tableau "products" à cette clé
+           //  et que la session lui même est un tableau
+             if(!isset($_SESSION['product'])) {
+              $_SESSION['product'] = [];
+             }
+        
+             $_SESSION['product'][] = $product; 
+        
+            // Traitement de votre formulaire
+        // Exemple : ajout d'un produit en session
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // $produit = $_POST['produit'];
+            // $_SESSION['produits'][] = $produit;
+             $_SESSION['message'] = "Produit ajouté avec succès !";
+             }
+           }
+          
+        // La condition "header" effectue une redirection au formulaire(formulaire soumis ou non)
+        // après traitement.
+         header("Location: index.php");
+         }  
+      
+        //  (isset($_GET['article'])){
+        //   ajouterAuPanier($_GET['article']);
           echo "ajouter article au panier.";
           break;
         case "delete":
           echo " produit supprimé.";
           break;
         case "clear":
+          unset($_SESSION['product']); 
           // viderPanier();
           echo " panier vidé.";
           break;
         case "up-qtt":
-            echo " quantité augmentée.";
-            break;
+          $_SESSION['product'][$_GET['id']]['quantite'] ++;
+          //  echo "quantité augmentée.";
+           break;
         case "down-qtt":
-            echo " quantité diminuée.";
-              break;
+          $_SESSION['product'][$_GET['id']]['quantite'] --;
+          if ($_SESSION ['product']['quantite'] > 1 ){
+          $_SESSION ['product']['quantite'] --;
+          } else {
+            unset( $_SESSION['product']);
+          }
+            break;
       }
 
    }
@@ -64,40 +105,9 @@
 //         $products = $_GET['products'];
 //         $_SESSION['panier'][] = $products;
 //         break;
-//     case '
-   
-//contiennent respectivement les valeurs nettoyées et/ou validées du formulaire
-if($name && $price && $qtt){
-// ajout tableau product = clé 
-     $product = [
-        "name" => $name,
-        "price" => $price,
-        "qtt" => $qtt,
-        "total" => $price*$qtt
-     ];
-     
-   
-   
-// PHP crée automatiquement une session pour associer le tableau "products" à cette clé
-   //  et que la session lui même est un tableau
-     if(!isset($_SESSION['products'])) {
-      $_SESSION['products'] = [];
-     }
+//     }  
 
-     $_SESSION['products'][] = $product; 
+    //contiennent respectivement les valeurs nettoyées et/ou validées du formulaire
 
-    // Traitement de votre formulaire
-// Exemple : ajout d'un produit en session
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // $produit = $_POST['produit'];
-    // $_SESSION['produits'][] = $produit;
-     $_SESSION['message'] = "Produit ajouté avec succès !";
-     }
-   }
-  
-// La condition "header" effectue une redirection au formulaire(formulaire soumis ou non)
-// après traitement.
- header("Location: index.php");
- exit();
 ?>
   
