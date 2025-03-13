@@ -15,10 +15,13 @@ unset($_SESSION['message']);
         
 </head>
 <body>
+    <H1>
+        PAGE D'ACCUEIL
+    </H1>
 <div class="container">
         <!-- <h1>Bienvenue sur la page d'accueil</h1> -->
         <!-- <p>Ceci est un exemple de page d'accueil.</p> -->
-        <a href="recap.php" class="button">Voir le récapitulatif</a>
+        <!-- <a href="recap.php" class="button">Voir le récapitulatif</a> -->
         <!--  <div class="container">
         <?php if ($message): ?>
             <p><?php echo $message; ?></p>
@@ -29,7 +32,6 @@ unset($_SESSION['message']);
     <div class="navbar">
         <a href="index.php">Home</a>
         <a href="recap.php">Recap</a>
-       
         <a href="#">Produits en session: <?php echo $nombreProduits; ?></a>
         <!-- <span style="float:right; padding: 14px 16px;">Produits en session: <?php echo $nbProduits; ?></span> -->
     </div>

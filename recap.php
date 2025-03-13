@@ -3,13 +3,11 @@
 session_start() pour recuperer la session de l'utilisateur */
 
 session_start();
-<<<<<<< HEAD
-$nombreProduits = isset($_SESSION['produit']) ? count($_SESSION['produit']) : 0;
-=======
 $nombreProduits = isset($_SESSION['product']) ? count($_SESSION['product']) : 0;
->>>>>>> f08cbe6e7cc50e96f05435c6d8c43f26803d5d9b
 $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 unset($_SESSION['message']);
+
+// var_dump([$_SESSION['product']]);
     ?>
    
 <!-- Permet d'afficher de manière organisée et exhaustive la liste des produits 
@@ -24,10 +22,12 @@ unset($_SESSION['message']);
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+      <h1>
+        MODIFICATION PRODUITS
+      </h1>
       <div class="navbar">
         <a href="index.php">Home</a>
         <a href="recap.php">Recap</a>
-       
         <a href="#">Produits en session: <?php echo $nombreProduits; ?></a>
         <!-- <span style="float:right; padding: 14px 16px;">Produits en session: <?php echo $nbProduits; ?></span> -->
     </div>
@@ -70,18 +70,16 @@ unset($_SESSION['message']);
                   // La fonction number_format est souvent utilisée pour afficher des prix, des statistiques 
                   // ou tout autre type de données numériques de manière plus lisible pour les utilisateurs.
                   "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
-                  "<td>".'<a href="traitement.php?action=down-qtt&id">-</a> '.$product['qtt']. 
-                  '<a href="traitement.php?action=up-qtt&id=" . $index" >+</a>'."</td>"  ,
-<<<<<<< HEAD
-                  "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
-=======
-                  // "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>"
-                  "<td>".number_format($product['prix'] * $product['quantite'], 2) € ."</td>",
->>>>>>> f08cbe6e7cc50e96f05435c6d8c43f26803d5d9b
+                  // "<td>".'<a href="traitement.php?action=down-qtt&id">-</a> '.$product['qtt']. 
+                  "<td>".'<a href="traitement.php?action=down-qtt&id='.$index.'">-</a>'.$product['qtt']. 
+                  '<a href="traitement.php?action=up-qtt&id='.$index.'">+</a>'."</td>",
+                  // "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
+                  // "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
+                  "<td>".number_format($product['price'] * $product['qtt'], 2)  ."</td>",
               "</tr>";
         //  $totalGeneral += $product['total']; 
         $totalGeneral +=
-        $product['prix'] * $product['quantite'];
+        $product['price'] * $product['qtt'];
         }
         echo "<tr>",
         // L'attribut colspan est utilisé dans les balises <td> ou <th> pour indiquer combien de colonnes 

@@ -25,11 +25,6 @@
   // à l'attribut "name" du bouton <input type="submit" name="submit"> du formulaire.
   // isset() renverra false lors de la vérification d'une variable de valeur nulle. 
  
-   if(isset($_GET['action'])) {
-
-    switch($_GET['action']){
-      case "add":
-
         if(isset($_POST['submit'])){
           $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
           $price = filter_input(INPUT_POST, "price" , FILTER_VALIDATE_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
@@ -69,6 +64,11 @@
          header("Location: index.php");
          }  
       
+        if(isset($_GET['action'])) {
+
+        switch($_GET['action']){
+
+        case "add":
         //  (isset($_GET['article'])){
         //   ajouterAuPanier($_GET['article']);
           echo "ajouter article au panier.";
@@ -77,20 +77,28 @@
           echo " produit supprimé.";
           break;
         case "clear":
+          // Supprimer le panier 
           unset($_SESSION['product']); 
-          // viderPanier();
-          echo " panier vidé.";
           break;
         case "up-qtt":
-          $_SESSION['product'][$_GET['id']]['quantite'] ++;
-          //  echo "quantité augmentée.";
+          // Modifier les quantités de chaque produit grâce au plus
+          $_SESSION ['product'][$_GET['id']]['qtt'] ++;
+          // Renvoie à la page recap.php 
+          header("Location: recap.php");
            break;
+
         case "down-qtt":
-            echo " quantité diminuée.";
-              break;
+          // Modifier les quantités de chaque produit grâce au moins
+          $_SESSION ['product'][$_GET['id']] ['qtt'] --;
+          //Renvoie à la page recap.php 
+         header("Location: recap.php");
+        break;
+
+       }
+
       }
 
-   }
+   
 
 //   $action = isset($_GET['action']) ? $_GET['action'] : '';
 
