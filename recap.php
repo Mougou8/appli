@@ -3,7 +3,11 @@
 session_start() pour recuperer la session de l'utilisateur */
 
 session_start();
+<<<<<<< HEAD
 $nombreProduits = isset($_SESSION['produit']) ? count($_SESSION['produit']) : 0;
+=======
+$nombreProduits = isset($_SESSION['product']) ? count($_SESSION['product']) : 0;
+>>>>>>> f08cbe6e7cc50e96f05435c6d8c43f26803d5d9b
 $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 unset($_SESSION['message']);
     ?>
@@ -68,9 +72,16 @@ unset($_SESSION['message']);
                   "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
                   "<td>".'<a href="traitement.php?action=down-qtt&id">-</a> '.$product['qtt']. 
                   '<a href="traitement.php?action=up-qtt&id=" . $index" >+</a>'."</td>"  ,
+<<<<<<< HEAD
                   "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
+=======
+                  // "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>"
+                  "<td>".number_format($product['prix'] * $product['quantite'], 2) € ."</td>",
+>>>>>>> f08cbe6e7cc50e96f05435c6d8c43f26803d5d9b
               "</tr>";
-         $totalGeneral += $product['total']; 
+        //  $totalGeneral += $product['total']; 
+        $totalGeneral +=
+        $product['prix'] * $product['quantite'];
         }
         echo "<tr>",
         // L'attribut colspan est utilisé dans les balises <td> ou <th> pour indiquer combien de colonnes 

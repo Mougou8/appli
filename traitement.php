@@ -86,12 +86,8 @@
           //  echo "quantité augmentée.";
            break;
         case "down-qtt":
-          // if ($_SESSION ['product']['quantite'] > 1 ){
-          // $_SESSION ['product']['quantite'] --;
-          // } else {
-          //   unset( $_SESSION['product']);
-          // }
-            break;
+            echo " quantité diminuée.";
+              break;
       }
 
    }
