@@ -23,7 +23,7 @@ unset($_SESSION['message']);
     </head>
     <body>
       <h1>
-        MODIFICATION PRODUITS
+      MODIFICATION PRODUITS
       </h1>
       <div class="navbar">
         <a href="index.php">Home</a>
