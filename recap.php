@@ -3,7 +3,7 @@
 session_start() pour recuperer la session de l'utilisateur */
 
 session_start();
-$nombreProduits = isset($_SESSION['panier']) ? count($_SESSION['panier']) : 0;
+$nombreProduits = isset($_SESSION['produit']) ? count($_SESSION['produit']) : 0;
 $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 unset($_SESSION['message']);
     ?>
@@ -23,14 +23,20 @@ unset($_SESSION['message']);
       <div class="navbar">
         <a href="index.php">Home</a>
         <a href="recap.php">Recap</a>
+       
         <a href="#">Produits en session: <?php echo $nombreProduits; ?></a>
-        <span style="float:right; padding: 14px 16px;">Produits en session: <?php echo $nbProduits; ?></span>
+        <!-- <span style="float:right; padding: 14px 16px;">Produits en session: <?php echo $nbProduits; ?></span> -->
     </div>
+    <p>
+   
+    <!-- <a href="traitement.php?action=down-qtt&id">-</a>  -->
+    </p>
+    
        <?php 
       
        // Ajout d'une condition qui vérifie: soit la clé "products" du tableau de session n'existe pas:!isset(),
        // soit cette clé existe mais ne contient aucune donnée: empty()
-            if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
+            if(!isset($_SESSION['product']) || empty($_SESSION['product'])){
         echo "<p>Aucun produit en session... </p> ";
        }
        else {
@@ -50,7 +56,7 @@ unset($_SESSION['message']);
         // la boucle itérative foreach(), particulièrement efficace pour exécuter, produit par produit,
         // les mêmes intructions permerttront à l'affichage uniforme de chacun d'entre eux.
         //Dispositions au sein de la boucle de deux variables pour chaque donnée dans $_SESSION['products']     
-        foreach ($_SESSION['products'] as $index => $product){
+        foreach ($_SESSION['product'] as $index => $product){
          echo "<tr>",
          //sert à numéroter chaque produit dans le tableau HTML
                   "<td>".$index."</td>",
@@ -60,7 +66,8 @@ unset($_SESSION['message']);
                   // La fonction number_format est souvent utilisée pour afficher des prix, des statistiques 
                   // ou tout autre type de données numériques de manière plus lisible pour les utilisateurs.
                   "<td>".number_format($product['price'],2,",","&nbsp;")."&nbsp;€</td>",
-                  "<td>".$product['qtt']."</td>",
+                  "<td>".'<a href="traitement.php?action=down-qtt&id">-</a> '.$product['qtt']. 
+                  '<a href="traitement.php?action=up-qtt&id=" . $index" >+</a>'."</td>"  ,
                   "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
               "</tr>";
          $totalGeneral += $product['total']; 
@@ -75,6 +82,10 @@ unset($_SESSION['message']);
          "</table>";
        }     
        ?> 
+       <p>
+               <a href="traitement.php?action=clear">clear</a>
+        </p>
+                    
     </body>
     </html>
     <!-- Une session contient les données stockées dans la session utilisateur côté serveur. -->
