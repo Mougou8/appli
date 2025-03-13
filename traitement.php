@@ -89,10 +89,10 @@
 
         case "down-qtt":
           // Modifier les quantités de chaque produit grâce au moins
-          if ($_SESSION ['product'][$_GET['id']] ['qtt'] >1) {
+          // if ($_SESSION ['product'][$_GET['id']] ['qtt'] >1) {
 
-            $_SESSION ['product'][$_GET['id']] ['qtt'] --;
-          }
+            $_SESSION ['product'][$_GET['id']]['qtt'] --;
+          // }
 
           //Renvoie à la page recap.php 
          header("Location: recap.php");
