@@ -15,9 +15,9 @@ unset($_SESSION['message']);
         
 </head>
 <body>
-    <H1>
+    <!-- <H1>
         PAGE D'ACCUEIL
-    </H1>
+    </H1> -->
 <div class="container">
         <!-- <h1>Bienvenue sur la page d'accueil</h1> -->
         <!-- <p>Ceci est un exemple de page d'accueil.</p> -->

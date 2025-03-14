@@ -74,7 +74,13 @@
           echo "ajouter article au panier.";
           break;
         case "delete":
-          echo " produit supprimé.";
+          //Vérifier que le produit existe dans le panier
+          if(isset($_SESSION['product'][$_GET['id']])){
+            //S'il existe , supprimer le produit du panier
+          unset($_SESSION['product'][$_GET['id']]);
+          }
+          // Renvoie à la page recap.php
+          header("Location: recap.php");
           break;
         case "clear":
           // Supprimer le panier 
@@ -89,11 +95,14 @@
 
         case "down-qtt":
           // Modifier les quantités de chaque produit grâce au moins
-          // if ($_SESSION ['product'][$_GET['id']] ['qtt'] >1) {
+          if (isset($_SESSION ['product'][$_GET['id']])) {
+            if ($_SESSION ['product'][$_GET['id']] ['qtt'] > 1) {
 
             $_SESSION ['product'][$_GET['id']]['qtt'] --;
-          // }
-
+          } else {
+            unset($_SESSION ['product'][$_GET['id']]);
+          }
+        }
           //Renvoie à la page recap.php 
          header("Location: recap.php");
         break;

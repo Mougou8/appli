@@ -53,6 +53,7 @@ unset($_SESSION['message']);
                     "<th>Prix</th>",
                     "<th>Quantié</th>",
                     "<th>Total</th>",
+                    "<th>Supprimer</th>",
                  "</tr>",
                 "</thead>",
                 "<tbody>";
@@ -76,6 +77,7 @@ unset($_SESSION['message']);
                   // "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
                   // "<td>".number_format($product['total'],2,",","&nbsp;")."&nbsp;€</td>",
                   "<td>".number_format($product['price'] * $product['qtt'], 2)  ."</td>",
+                  "<td>.<a href='traitement.php?action=delete&id=$index'>Supprimer</td>",
               "</tr>";
         //  $totalGeneral += $product['total']; 
         $totalGeneral +=
